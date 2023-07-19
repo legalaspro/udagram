@@ -44,7 +44,7 @@ jobs:
             - .
   test: # New job for unit testing
     docker:
-      - image: "cimg/node:16.20"
+      - image: "cimg/node:16.20-browsers"
     steps:
       - attach_workspace:
           at: .

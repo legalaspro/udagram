@@ -38,13 +38,16 @@ jobs:
           name: API Build
           command: |
             npm run api:build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   test: # New job for unit testing
     docker:
       - image: "cimg/node:16.20"
     steps:
-      - node/install:
-          node-version: "16.20"
-      - checkout
+      - attach_workspace:
+          at: .
       - run:
           name: Run Unit Tests
           command: |

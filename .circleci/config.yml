@@ -49,6 +49,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
+      - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - run:
           name: Run Unit Tests

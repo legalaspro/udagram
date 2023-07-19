@@ -9,10 +9,10 @@ jobs:
   build:
     docker:
       # the base image can run most needed actions with orbs
-      - image: "cimg/node:16.20.0"
+      - image: "cimg/node:16.20"
     steps:
       - node/install:
-          node-version: "16.20.0"
+          node-version: "16.20"
       - checkout
       - run:
           name: Install Front-End Dependencies
@@ -38,6 +38,17 @@ jobs:
           name: API Build
           command: |
             npm run api:build
+  test: # New job for unit testing
+    docker:
+      - image: "cimg/node:16.20"
+    steps:
+      - node/install:
+          node-version: "16.20"
+      - checkout
+      - run:
+          name: Run Unit Tests
+          command: |
+            npm run frontend:test
   # deploy step will run only after manual approval
   deploy:
     docker:
@@ -58,6 +69,9 @@ workflows:
   udagram:
     jobs:
       - build
+      - test:
+          requires:
+            - build
       - hold:
           filters:
             branches:
@@ -65,7 +79,7 @@ workflows:
                 - main
           type: approval
           requires:
-            - build
+            - test
       - deploy:
           requires:
             - hold

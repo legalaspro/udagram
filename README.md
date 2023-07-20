@@ -1,71 +1,83 @@
-# Hosting a Full-Stack Application
+# Udagram a Full-Stack Application
 
-### **You can use you own project completed in previous courses or use the provided Udagram app for completing this final project.**
+## Overview
 
----
+Udagram is a simple, Instagram-like application where users can register and log in to share images, view images shared by other users, and interact with them. The application is a full-stack application with a front-end built in Angular and a back-end developed using Node.js and Express.
 
-In this project you will learn how to take a newly developed Full-Stack application built for a retailer and deploy it to a cloud service provider so that it is available to customers. You will use the aws console to start and configure the services the application needs such as a database to store product information and a web server allowing the site to be discovered by potential customers. You will modify your package.json scripts and replace hard coded secrets with environment variables in your code.
+This project focuses on deploying this full-stack application to a cloud service provider (AWS), making it accessible to users. It will guide you through the process of setting up and configuring the necessary AWS services, such as a Postgres RDS database and an S3 bucket for storing images and Frontend. The project also integrates a CI/CD pipeline using CircleCI, which automates the deployment process whenever new code is pushed to the main GitHub branch.
 
-After the initial setup, you will learn to interact with the services you started on aws and will deploy manually the application a first time to it. As you get more familiar with the services and interact with them through a CLI, you will gradually understand all the moving parts.
+## Application Preview
 
-You will then register for a free account on CircleCi and connect your Github account to it. Based on the manual steps used to deploy the app, you will write a config.yml file that will make the process reproducible in CircleCi. You will set up the process to be executed automatically based when code is pushed on the main Github branch.
+![Udagram Screenshot](./docs/images/udagram_screenshot.png "Screenshot of Udagram")
 
-The project will also include writing documentation and runbooks covering the operations of the deployment process. Those runbooks will serve as a way to communicate with future developers and anybody involved in diagnosing outages of the Full-Stack application.
-
-# Udagram
-
-This application is provided to you as an alternative starter project if you do not wish to host your own code done in the previous courses of this nanodegree. The udagram application is a fairly simple application that includes all the major components of a Full-Stack web application.
+You can see the live application at [Udagram Live](http://udagram117850033504.s3-website-us-east-1.amazonaws.com/home)
 
 
+## Installation and Setup
 
-### Dependencies
+Follow the steps below to set up the application locally:
 
-```
-- Node v14.15.1 (LTS) or more recent. While older versions can work it is advisable to keep node to latest LTS version
+1. Make sure you have the following dependencies installed on your system:
+    - Node v16.20.1 (LTS) or more recent.
+    - npm 8.19.4 (LTS) or more recent.
+    - AWS CLI v2.
+    - Elastic Beanstalk CLI (EB CLI) v3.
+    
+2. Provision the necessary AWS services:
+    - Create a publicly accessible RDS database running Postgres.
+    - Create an S3 bucket for hosting the uploaded files.
+    
+3. Export the following environment variables needed:
+    - `POSTGRES_USERNAME`: This is the username for your PostgreSQL database instance. You will set this when creating your RDS instance.
+    - `POSTGRES_PASSWORD`: This is the password for your PostgreSQL database instance. This is also set when creating your RDS instance.
+    - `POSTGRES_HOST`: This is the endpoint URL of your PostgreSQL database instance. You will receive this after setting up your RDS instance.
+    - `POSTGRES_DB`: This is the name of the PostgreSQL database that you will be using for the application.
+    - `AWS_BUCKET`: This is the name of the AWS S3 bucket where the images are to be stored. This bucket needs to be created and configured in AWS S3.
+    - `AWS_REGION`: This is the region where your AWS services are hosted. It should be set based on where you've set up your RDS and S3 instances.
+    - `JWT_SECRET`: This is the secret key used to sign and verify JSON Web Tokens for user authentication. You can choose a strong, random string as the secret key.
+    - `AWS_PROFILE`:  This is the named profile in your AWS credentials file that the Elastic Beanstalk CLI will use to make calls to AWS services. You create a named profile using the `aws configure --profile profilename` command, and it associates set access keys with a specific name.
 
-- npm 6.14.8 (LTS) or more recent, Yarn can work but was not tested for this project
+4.  Navigate to the `udagram-api` folder from the root of the repo (`cd udagram/udagram-api`), install the dependencies with `npm install`, and start the API in development mode with `npm run dev`.
 
-- AWS CLI v2, v1 can work but was not tested for this project
-
-- A RDS database running Postgres.
-
-- A S3 bucket for hosting uploaded pictures.
-
-```
-
-### Installation
-
-Provision the necessary AWS services needed for running the application:
-
-1. In AWS, provision a publicly available RDS database running Postgres. <Place holder for link to classroom article>
-1. In AWS, provision a s3 bucket for hosting the uploaded files. <Place holder for tlink to classroom article>
-1. Export the ENV variables needed or use a package like [dotnev](https://www.npmjs.com/package/dotenv)/.
-1. From the root of the repo, navigate udagram-api folder `cd starter/udagram-api` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run dev`.
-1. Without closing the terminal in step 1, navigate to the udagram-frontend `cd starter/udagram-frontend` to intall the node_modules `npm install`. After installation is done start the api in dev mode with `npm run start`.
+5. Without closing the previous terminal, navigate to the `udagram-frontend` folder (`cd udagram/udagram-frontend`), install the dependencies with `npm install -f`, and start the front-end in development mode with `npm run start`.
 
 ## Testing
 
-This project contains two different test suite: unit tests and End-To-End tests(e2e). Follow these steps to run the tests.
-
-1. `cd starter/udagram-frontend`
-1. `npm run test`
-1. `npm run e2e`
-
-There are no Unit test on the back-end
+This project contains two different types of tests for the frontend: unit tests and end-to-end tests (e2e).
 
 ### Unit Tests:
 
-Unit tests are using the Jasmine Framework.
+The frontend unit tests are developed using the Karma test runner and Mocha testing framework, in combination with Jasmine for assertions. To run these tests, follow these steps:
+
+Navigate to the udagram-frontend folder and run:
+```
+cd udagram/udagram-frontend
+npm run test
+```
+
+Please note that the backend currently does not include any unit tests.
 
 ### End to End Tests:
 
-The e2e tests are using Protractor and Jasmine.
+End-to-end tests are designed to test the system as a whole, rather than individual parts. These are developed using Protractor, which is an end-to-end test framework for Angular applications, and Jasmine for assertions. To run these tests, follow these steps:
+```
+cd udagram/udagram-frontend
+npm run e2e
+```
+
+Both unit tests and end-to-end tests are part of the CI/CD pipeline and are automatically executed during the pipeline process.
 
 ## Built With
 
 - [Angular](https://angular.io/) - Single Page Application Framework
+- [Ionic](https://ionicframework.com/): Open-source Framework for building cross-platform mobile applications using web technologies like JavaScript, HTML, and CSS.
 - [Node](https://nodejs.org) - Javascript Runtime
 - [Express](https://expressjs.com/) - Javascript API Framework
+- [Karma](https://karma-runner.github.io/latest/index.html): Test Runner for JavaScript
+- [Mocha](https://mochajs.org/): JavaScript Test Framework for Node.js
+- [Jasmine](https://jasmine.github.io/): Behavior-Driven Development Framework for testing JavaScript code
+- [Protractor](http://www.protractortest.org/): End-to-End Test Framework for Angular Applications
+
 
 ## License
 

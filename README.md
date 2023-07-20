@@ -6,6 +6,12 @@ Udagram is a simple, Instagram-like application where users can register and log
 
 This project focuses on deploying this full-stack application to a cloud service provider (AWS), making it accessible to users. It will guide you through the process of setting up and configuring the necessary AWS services, such as a Postgres RDS database and an S3 bucket for storing images and Frontend. The project also integrates a CI/CD pipeline using CircleCI, which automates the deployment process whenever new code is pushed to the main GitHub branch.
 
+## Application Preview
+
+![Udagram Screenshot](./docs/images/udagram_screenshot.png "Screenshot of Udagram")
+
+You can see the live application at [Udagram Live](http://udagram117850033504.s3-website-us-east-1.amazonaws.com/home)
+
 
 ## Installation and Setup
 
@@ -35,45 +41,64 @@ Follow the steps below to set up the application locally:
 
 5. Without closing the previous terminal, navigate to the `udagram-frontend` folder (`cd udagram/udagram-frontend`), install the dependencies with `npm install -f`, and start the front-end in development mode with `npm run start`.
 
+Testing
+This project contains two different types of tests: unit tests and end-to-end tests (e2e).
 
+Unit Tests:
+The frontend unit tests are developed using the Karma test runner and Mocha testing framework in combination with Jasmine for providing assertion capabilities.
 
+To run the unit tests, follow these steps:
 
+Navigate to the udagram-frontend folder (cd udagram/udagram-frontend).
+Run npm run test.
+The backend currently does not include any unit tests.
 
+End to End Tests:
+The end-to-end tests are designed to test the system as a whole, rather than individual parts. These are developed using Protractor, which is an end-to-end test framework for Angular applications, in combination with Jasmine for assertions.
 
-- Manually initialize the backend Elastic Beanstalk environment with the name 'udagram-api' and environment 'udagram-api-dev'.
-### Installation
+To run the end-to-end tests, follow these steps:
 
-Provision the necessary AWS services needed for running the application:
-
-1. In AWS, provision a publicly available RDS database running Postgres. <Place holder for link to classroom article>
-1. In AWS, provision a s3 bucket for hosting the uploaded files. <Place holder for tlink to classroom article>
-1. Export the ENV variables needed or use a package like [dotnev](https://www.npmjs.com/package/dotenv)/.
-1. From the root of the repo, navigate udagram-api folder `cd starter/udagram-api` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run dev`.
-1. Without closing the terminal in step 1, navigate to the udagram-frontend `cd starter/udagram-frontend` to intall the node_modules `npm install`. After installation is done start the api in dev mode with `npm run start`.
+Navigate to the udagram-frontend folder (cd udagram/udagram-frontend).
+Run npm run e2e.
+Both unit tests and end-to-end tests are part of the CI/CD pipeline and are automatically executed in the pipeline process.
 
 ## Testing
 
-This project contains two different test suite: unit tests and End-To-End tests(e2e). Follow these steps to run the tests.
-
-1. `cd starter/udagram-frontend`
-1. `npm run test`
-1. `npm run e2e`
-
-There are no Unit test on the back-end
+This project contains two different types of tests for the frontend: unit tests and end-to-end tests (e2e).
 
 ### Unit Tests:
 
-Unit tests are using the Jasmine Framework.
+The frontend unit tests are developed using the Karma test runner and Mocha testing framework, in combination with Jasmine for assertions. To run these tests, follow these steps:
+
+Navigate to the udagram-frontend folder and run:
+```
+cd udagram/udagram-frontend
+npm run test
+```
+
+Please note that the backend currently does not include any unit tests.
 
 ### End to End Tests:
 
-The e2e tests are using Protractor and Jasmine.
+End-to-end tests are designed to test the system as a whole, rather than individual parts. These are developed using Protractor, which is an end-to-end test framework for Angular applications, and Jasmine for assertions. To run these tests, follow these steps:
+```
+cd udagram/udagram-frontend
+npm run e2e
+```
+
+Both unit tests and end-to-end tests are part of the CI/CD pipeline and are automatically executed during the pipeline process.
 
 ## Built With
 
 - [Angular](https://angular.io/) - Single Page Application Framework
+- [Ionic](https://ionicframework.com/): Open-source Framework for building cross-platform mobile applications using web technologies like JavaScript, HTML, and CSS.
 - [Node](https://nodejs.org) - Javascript Runtime
 - [Express](https://expressjs.com/) - Javascript API Framework
+- [Karma](https://karma-runner.github.io/latest/index.html): Test Runner for JavaScript
+- [Mocha](https://mochajs.org/): JavaScript Test Framework for Node.js
+- [Jasmine](https://jasmine.github.io/): Behavior-Driven Development Framework for testing JavaScript code
+- [Protractor](http://www.protractortest.org/): End-to-End Test Framework for Angular Applications
+
 
 ## License
 

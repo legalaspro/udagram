@@ -1,38 +1,46 @@
-# Hosting a Full-Stack Application
+# Udagram a Full-Stack Application
 
-### **You can use you own project completed in previous courses or use the provided Udagram app for completing this final project.**
+## Overview
 
----
+Udagram is a simple, Instagram-like application where users can register and log in to share images, view images shared by other users, and interact with them. The application is a full-stack application with a front-end built in Angular and a back-end developed using Node.js and Express.
 
-In this project you will learn how to take a newly developed Full-Stack application built for a retailer and deploy it to a cloud service provider so that it is available to customers. You will use the aws console to start and configure the services the application needs such as a database to store product information and a web server allowing the site to be discovered by potential customers. You will modify your package.json scripts and replace hard coded secrets with environment variables in your code.
-
-After the initial setup, you will learn to interact with the services you started on aws and will deploy manually the application a first time to it. As you get more familiar with the services and interact with them through a CLI, you will gradually understand all the moving parts.
-
-You will then register for a free account on CircleCi and connect your Github account to it. Based on the manual steps used to deploy the app, you will write a config.yml file that will make the process reproducible in CircleCi. You will set up the process to be executed automatically based when code is pushed on the main Github branch.
-
-The project will also include writing documentation and runbooks covering the operations of the deployment process. Those runbooks will serve as a way to communicate with future developers and anybody involved in diagnosing outages of the Full-Stack application.
-
-# Udagram
-
-This application is provided to you as an alternative starter project if you do not wish to host your own code done in the previous courses of this nanodegree. The udagram application is a fairly simple application that includes all the major components of a Full-Stack web application.
+This project focuses on deploying this full-stack application to a cloud service provider (AWS), making it accessible to users. It will guide you through the process of setting up and configuring the necessary AWS services, such as a Postgres RDS database and an S3 bucket for storing images and Frontend. The project also integrates a CI/CD pipeline using CircleCI, which automates the deployment process whenever new code is pushed to the main GitHub branch.
 
 
+## Installation and Setup
 
-### Dependencies
+Follow the steps below to set up the application locally:
 
-```
-- Node v14.15.1 (LTS) or more recent. While older versions can work it is advisable to keep node to latest LTS version
+1. Make sure you have the following dependencies installed on your system:
+    - Node v16.20.1 (LTS) or more recent.
+    - npm 8.19.4 (LTS) or more recent.
+    - AWS CLI v2.
+    - Elastic Beanstalk CLI (EB CLI) v3.
+    
+2. Provision the necessary AWS services:
+    - Create a publicly accessible RDS database running Postgres.
+    - Create an S3 bucket for hosting the uploaded files.
+    
+3. Export the following environment variables needed:
+    - `POSTGRES_USERNAME`: This is the username for your PostgreSQL database instance. You will set this when creating your RDS instance.
+    - `POSTGRES_PASSWORD`: This is the password for your PostgreSQL database instance. This is also set when creating your RDS instance.
+    - `POSTGRES_HOST`: This is the endpoint URL of your PostgreSQL database instance. You will receive this after setting up your RDS instance.
+    - `POSTGRES_DB`: This is the name of the PostgreSQL database that you will be using for the application.
+    - `AWS_BUCKET`: This is the name of the AWS S3 bucket where the images are to be stored. This bucket needs to be created and configured in AWS S3.
+    - `AWS_REGION`: This is the region where your AWS services are hosted. It should be set based on where you've set up your RDS and S3 instances.
+    - `JWT_SECRET`: This is the secret key used to sign and verify JSON Web Tokens for user authentication. You can choose a strong, random string as the secret key.
+    - `AWS_PROFILE`:  This is the named profile in your AWS credentials file that the Elastic Beanstalk CLI will use to make calls to AWS services. You create a named profile using the `aws configure --profile profilename` command, and it associates set access keys with a specific name.
 
-- npm 6.14.8 (LTS) or more recent, Yarn can work but was not tested for this project
+4.  Navigate to the `udagram-api` folder from the root of the repo (`cd udagram/udagram-api`), install the dependencies with `npm install`, and start the API in development mode with `npm run dev`.
 
-- AWS CLI v2, v1 can work but was not tested for this project
+5. Without closing the previous terminal, navigate to the `udagram-frontend` folder (`cd udagram/udagram-frontend`), install the dependencies with `npm install -f`, and start the front-end in development mode with `npm run start`.
 
-- A RDS database running Postgres.
 
-- A S3 bucket for hosting uploaded pictures.
 
-```
 
+
+
+- Manually initialize the backend Elastic Beanstalk environment with the name 'udagram-api' and environment 'udagram-api-dev'.
 ### Installation
 
 Provision the necessary AWS services needed for running the application:

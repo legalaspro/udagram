@@ -41,27 +41,6 @@ Follow the steps below to set up the application locally:
 
 5. Without closing the previous terminal, navigate to the `udagram-frontend` folder (`cd udagram/udagram-frontend`), install the dependencies with `npm install -f`, and start the front-end in development mode with `npm run start`.
 
-Testing
-This project contains two different types of tests: unit tests and end-to-end tests (e2e).
-
-Unit Tests:
-The frontend unit tests are developed using the Karma test runner and Mocha testing framework in combination with Jasmine for providing assertion capabilities.
-
-To run the unit tests, follow these steps:
-
-Navigate to the udagram-frontend folder (cd udagram/udagram-frontend).
-Run npm run test.
-The backend currently does not include any unit tests.
-
-End to End Tests:
-The end-to-end tests are designed to test the system as a whole, rather than individual parts. These are developed using Protractor, which is an end-to-end test framework for Angular applications, in combination with Jasmine for assertions.
-
-To run the end-to-end tests, follow these steps:
-
-Navigate to the udagram-frontend folder (cd udagram/udagram-frontend).
-Run npm run e2e.
-Both unit tests and end-to-end tests are part of the CI/CD pipeline and are automatically executed in the pipeline process.
-
 ## Testing
 
 This project contains two different types of tests for the frontend: unit tests and end-to-end tests (e2e).

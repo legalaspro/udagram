@@ -1,5 +1,7 @@
 # Udagram a Full-Stack Application
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/legalaspro/udagram/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/legalaspro/udagram/tree/main)
+
 ## Overview
 
 Udagram is a simple, Instagram-like application where users can register and log in to share images, view images shared by other users, and interact with them. The application is a full-stack application with a front-end built in Angular and a back-end developed using Node.js and Express.
